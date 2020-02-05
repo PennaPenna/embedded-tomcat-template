@@ -23,6 +23,12 @@ public class ChristmasCountdownServlet extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/christmasCountdown.jsp").forward(req, resp);
     }
 
+    /**
+     * Returns the next Christmas eve counted from the given date.
+     * 
+     * @param date from which the next Christmas is counted
+     * @return December 24th on either the same or next year as given date
+     */
     private LocalDate nextChristmasFrom(LocalDate date) {
         // is it past December 24th?
         if (date.getMonthValue() == 12 && date.getDayOfMonth() > 24) {

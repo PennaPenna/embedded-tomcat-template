@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Days until...</title>
+<!-- simple classless CSS stylesheet, see: https://github.com/oxalorg/sakura -->
+<link rel="stylesheet"
+	href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+</head>
+<body>
+	<div>
+		<p>Count days between today and any other date:</p>
+		<form action="/daysUntil" method="get">
+			<label>Year: <input type="text" name="year">
+			</label> <label>Month: <input type="text" name="month">
+			</label> <label>Day: <input type="text" name="day">
+			</label> <input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>
