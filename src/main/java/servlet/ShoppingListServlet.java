@@ -13,7 +13,7 @@ import database.JDBCShoppingListItemDao;
 import database.ShoppingListItemDao;
 import model.ShoppingListItem;
 
-@WebServlet("/list")
+@WebServlet({ "/", "/list" })
 public class ShoppingListServlet extends HttpServlet {
 
     private ShoppingListItemDao dao = new JDBCShoppingListItemDao();
@@ -43,6 +43,6 @@ public class ShoppingListServlet extends HttpServlet {
          * ill effects, such as submitting the form another time."
          * https://en.wikipedia.org/wiki/Post/Redirect/Get
          */
-        resp.sendRedirect("/list");
+        resp.sendRedirect("/");
     }
 }

@@ -33,7 +33,7 @@
 			<c:forEach items="${ allItems }" var="item">
 				<tr>
 					<td class="title"><c:out value="${ item.getTitle() }" /></td>
-					<td><form method="post" action="/list/delete">
+					<td><form method="post" action="/delete">
 							<input type="hidden" name="id" value="${ item.getId() }" />
 							<button class="remove">&times;</button>
 						</form></td>

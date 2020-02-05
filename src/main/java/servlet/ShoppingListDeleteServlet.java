@@ -11,7 +11,7 @@ import database.JDBCShoppingListItemDao;
 import database.ShoppingListItemDao;
 import model.ShoppingListItem;
 
-@WebServlet("/list/delete")
+@WebServlet("/delete")
 public class ShoppingListDeleteServlet extends HttpServlet {
 
     private ShoppingListItemDao dao = new JDBCShoppingListItemDao();
@@ -24,13 +24,8 @@ public class ShoppingListDeleteServlet extends HttpServlet {
         boolean success = dao.removeItem(item);
 
         if (success) {
-            /*
-             * "Post/Redirect/Get (PRG) is a web development design pattern that lets the
-             * page shown after a form submission be reloaded, shared, or bookmarked without
-             * ill effects, such as submitting the form another time."
-             * https://en.wikipedia.org/wiki/Post/Redirect/Get
-             */
-            resp.sendRedirect("/list");
+            // see https://en.wikipedia.org/wiki/Post/Redirect/Get
+            resp.sendRedirect("/");
         } else {
             throw new RuntimeException("Removing item " + id + " failed.");
         }
