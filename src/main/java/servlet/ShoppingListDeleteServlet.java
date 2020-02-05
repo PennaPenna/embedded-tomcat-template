@@ -21,14 +21,18 @@ public class ShoppingListDeleteServlet extends HttpServlet {
         long id = Long.parseLong(req.getParameter("id"));
 
         ShoppingListItem item = dao.getItem(id);
-        dao.removeItem(item);
+        boolean success = dao.removeItem(item);
 
-        /*
-         * "Post/Redirect/Get (PRG) is a web development design pattern that lets the
-         * page shown after a form submission be reloaded, shared, or bookmarked without
-         * ill effects, such as submitting the form another time."
-         * https://en.wikipedia.org/wiki/Post/Redirect/Get
-         */
-        resp.sendRedirect("/list");
+        if (success) {
+            /*
+             * "Post/Redirect/Get (PRG) is a web development design pattern that lets the
+             * page shown after a form submission be reloaded, shared, or bookmarked without
+             * ill effects, such as submitting the form another time."
+             * https://en.wikipedia.org/wiki/Post/Redirect/Get
+             */
+            resp.sendRedirect("/list");
+        } else {
+            throw new RuntimeException("Removing item " + id + " failed.");
+        }
     }
 }
