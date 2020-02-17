@@ -3,14 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>Shopping list demo app</title>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-
 <!-- simple classless CSS stylesheet, see: https://github.com/oxalorg/sakura -->
-<link rel="stylesheet"
-	href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+<script src="/scripts/app.js"></script>
 </head>
 
 <body>
@@ -31,12 +29,9 @@
 		</thead>
 		<tbody id="list-items">
 			<c:forEach items="${ allItems }" var="item">
-				<tr>
+				<tr id="product-${ item.getId() }">
 					<td class="title"><c:out value="${ item.getTitle() }" /></td>
-					<td><form method="post" action="/delete">
-							<input type="hidden" name="id" value="${ item.getId() }" />
-							<button class="remove">&times;</button>
-						</form></td>
+					<td><button class="remove" onclick="removeProduct(${ item.getId() })">&times;</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>

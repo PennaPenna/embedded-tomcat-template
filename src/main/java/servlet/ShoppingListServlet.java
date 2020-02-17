@@ -13,7 +13,7 @@ import database.JDBCShoppingListItemDao;
 import database.ShoppingListItemDao;
 import model.ShoppingListItem;
 
-@WebServlet({ "/", "/list" })
+@WebServlet({ "", "/list" })
 public class ShoppingListServlet extends HttpServlet {
 
     private ShoppingListItemDao dao = new JDBCShoppingListItemDao();
@@ -44,5 +44,21 @@ public class ShoppingListServlet extends HttpServlet {
          * https://en.wikipedia.org/wiki/Post/Redirect/Get
          */
         resp.sendRedirect("/");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        long id = Long.parseLong(req.getParameter("id"));
+
+        ShoppingListItem item = dao.getItem(id);
+        boolean success = dao.removeItem(item);
+
+        if (success) {
+            // see https://en.wikipedia.org/wiki/Post/Redirect/Get
+            resp.getWriter().print("success");
+        } else {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            resp.getWriter().print("not found");
+        }
     }
 }
